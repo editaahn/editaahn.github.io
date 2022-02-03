@@ -61,7 +61,7 @@ const Layout = ({ location, title, children }) => {
       {toggle}
       <h2
         style={{
-          ...scale(1),
+          ...scale(0.7),
           marginBottom: 0,
           marginTop: 0,
           fontFamily: `Montserrat, sans-serif`,
@@ -91,10 +91,13 @@ const Layout = ({ location, title, children }) => {
     >
       <div className="sidebar">
         <div
-          className="md:h-screen p-4 flex flex-col justify-center items-center"
+          className="md:h-screen p-3 flex flex-col justify-center items-center"
           style={{ minHeight: 200 }}
         >
           {header}
+          <span>
+            by Rita Ahn
+          </span>
         </div>
       </div>
 

@@ -1,16 +1,17 @@
 module.exports = {
-  pathPrefix: "/leonids",
+  pathPrefix: "/rita",
   siteMetadata: {
-    title: `Leonids`,
+    title: `여유롭게 서두르기`,
     author: {
-      name: `@ry_zou`,
-      summary: `web dev`,
+      name: `Rita Ahn`,
+      summary: `frontend / UX`,
     },
-    description: `A simple, fixed sidebar two columns Gatsby.js blog starter.`,
-    siteUrl: `https://renyuanz.github.io/leonids`,
+    description: `Frontend Developer`,
+    siteUrl: `https://editaahn.github.io`,
     social: {
-      twitter: `ry_zou`,
+      github: `editaahn`,
     },
+    email: `editaahn@yahoo.com`,
     defaultImage: "images/bg.jpeg",
   },
   plugins: [
