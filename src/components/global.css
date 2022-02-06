@@ -1,6 +1,11 @@
 @tailwind utilities;
 
 body {
+  font-family: Noto Sans KR, sans-serif;
+  line-height: 1.5;
+}
+
+body {
   --bg: #fff;
   --lightBg: #f5f5f5;
   --textNormal: #181818;
@@ -40,6 +45,7 @@ h5,
 h6,
 blockquote {
   color: var(--textTitle);
+  font-family: RaleWay, Noto Sans KR, sans-serif;
 }
 
 ul, ol {

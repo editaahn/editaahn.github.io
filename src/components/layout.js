@@ -64,7 +64,6 @@ const Layout = ({ location, title, children }) => {
           ...scale(0.7),
           marginBottom: 0,
           marginTop: 0,
-          fontFamily: `Montserrat, sans-serif`,
         }}
       >
         <Link
