@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-leonids",
+  "name": "rita-ahn-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Blog for front-end developers",
   "version": "0.1.0",
-  "author": "Renyuan Zou <zourenyuan@gmail.com>",
+  "author": "Rita <editaahn@yahoo.com>",
   "bugs": {
-    "url": "https://github.com/renyuanz/leonids/issues"
+    "url": "https://github.com/editaahn/editaahn.github.io/issues"
   },
   "dependencies": {
     "gatsby": "^2.24.47",
@@ -33,7 +33,8 @@
     "react-helmet": "^6.1.0",
     "react-typography": "^0.16.19",
     "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75",
+    "typeface-noto-sans-kr": "^1.1.13",
+    "typeface-raleway": "^1.1.13",
     "typography": "^0.16.19",
     "typography-theme-github": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
@@ -42,7 +43,7 @@
     "prettier": "2.0.5",
     "tailwindcss": "^1.6.2"
   },
-  "homepage": "https://github.com/renyuanz/leonids#readme",
+  "homepage": "https://github.com/editaahn/editaahn.github.io",
   "keywords": [
     "gatsby"
   ],
@@ -50,7 +51,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/renyuanz/leonids.git"
+    "url": "git+https://github.com/editaahn/editaahn.github.io.git"
   },
   "scripts": {
     "build": "gatsby build",

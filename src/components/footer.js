@@ -5,15 +5,7 @@ const Footer = () => {
     <footer className="my-12 text-center">
       © {new Date().getFullYear()}, Built with
       {` `}
-      Gatsby and{" "}
-      <a
-        href="https://github.com/renyuanz/leonids"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Leonids theme
-      </a>
-      .
+      Gatsby and Leonids theme.
     </footer>
   )
 }
