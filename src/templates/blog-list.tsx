@@ -7,7 +7,8 @@ import { rhythm } from "../utils/typography"
 
 type PageContext = {
   currentPage: number
-  numPages: number
+  totalPageCount: number
+  filter?: Record<string, unknown>
 }
 type Data = {
   site: {
@@ -39,10 +40,10 @@ const BlogIndex = ({
 }: PageProps<Data, PageContext>) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const { currentPage, numPages } = pageContext
+  const { currentPage, totalPageCount } = pageContext
 
   const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
+  const isLast = currentPage === totalPageCount
   const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
 
@@ -109,13 +110,14 @@ const BlogIndex = ({
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
+  query blogPageQuery($skip: Int!, $limit: Int!, $filter: MarkdownRemarkFilterInput) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
+      filter: $filter
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
