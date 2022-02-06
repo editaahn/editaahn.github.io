@@ -1,56 +1,57 @@
 // Gatsby supports TypeScript natively!
-import React from "react"
-import { PageProps, Link, graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import React from "react";
+import { PageProps, Link, graphql } from "gatsby";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm } from "../utils/typography";
 
 type PageContext = {
-  currentPage: number
-  numPages: number
-}
+  currentPage: number;
+  totalPageCount: number;
+  filter?: Record<string, unknown>;
+};
 type Data = {
   site: {
     siteMetadata: {
-      title: string
-    }
-  }
+      title: string;
+    };
+  };
   allMarkdownRemark: {
     edges: {
       node: {
-        excerpt: string
+        excerpt: string;
         frontmatter: {
-          title: string
-          date: string
-          description: string
-        }
+          title: string;
+          date: string;
+          description: string;
+        };
         fields: {
-          slug: string
-        }
-      }
-    }[]
-  }
-}
+          slug: string;
+        };
+      };
+    }[];
+  };
+};
 
 const BlogIndex = ({
   data,
   location,
   pageContext,
 }: PageProps<Data, PageContext>) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
-  const { currentPage, numPages } = pageContext
+  const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allMarkdownRemark.edges;
+  const { currentPage, totalPageCount } = pageContext;
 
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
-  const nextPage = `/${currentPage + 1}`
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === totalPageCount;
+  const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`;
+  const nextPage = `/${currentPage + 1}`;
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
+        const title = node.frontmatter.title || node.fields.slug;
         return (
           <article key={node.fields.slug}>
             <header>
@@ -73,7 +74,7 @@ const BlogIndex = ({
               />
             </section>
           </article>
-        )
+        );
       })}
 
       <nav>
@@ -103,19 +104,20 @@ const BlogIndex = ({
         </ul>
       </nav>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
+  query blogPageQuery($skip: Int!, $limit: Int!, $filter: MarkdownRemarkFilterInput) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
+      filter: $filter
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
@@ -135,4 +137,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
