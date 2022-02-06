@@ -42,6 +42,10 @@ blockquote {
   color: var(--textTitle);
 }
 
+ul, ol {
+  padding-left: 20px;
+}
+
 .footnotes {
   word-break: break-all;
 }
