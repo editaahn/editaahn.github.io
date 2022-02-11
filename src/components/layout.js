@@ -1,18 +1,20 @@
-import React from "react"
-import { Link } from "gatsby"
-import { ThemeToggler } from "gatsby-plugin-dark-mode"
-import { scale } from "../utils/typography"
+import React from "react";
+import { Link } from "gatsby";
+import { ThemeToggler } from "gatsby-plugin-dark-mode";
+import { scale } from "../utils/typography";
 
-import Footer from "./footer"
-import "./global.css"
+import Footer from "./footer";
+import "./global.css";
+import GithubIcon from '../assets/github.svg';
+import EmailIcon from '../assets/email.svg';
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, title, social, email, children }) => {
   const toggle = (
     <ThemeToggler>
       {({ toggleTheme, theme }) => {
-        const isDarkMode = theme === "dark"
+        const isDarkMode = theme === "dark";
         if (theme == null) {
-          return null
+          return null;
         }
 
         return (
@@ -51,10 +53,10 @@ const Layout = ({ location, title, children }) => {
               </svg>
             )}
           </button>
-        )
+        );
       }}
     </ThemeToggler>
-  )
+  );
 
   const header = (
     <>
@@ -77,7 +79,7 @@ const Layout = ({ location, title, children }) => {
         </Link>
       </h2>
     </>
-  )
+  );
 
   return (
     <div
@@ -94,9 +96,20 @@ const Layout = ({ location, title, children }) => {
           style={{ minHeight: 200 }}
         >
           {header}
-          <span>
-            by Rita Ahn
-          </span>
+          <div style={{
+            display: 'flex',
+            marginTop: 10
+          }}>
+            <span>
+              by Rita Ahn
+            </span>
+            <Link to={social?.github} target="_blank" style={{ boxShadow: 'none', margin: '0 10px 0 10px' }}>
+              <GithubIcon />
+            </Link>
+            <a href={'mailto:' + email} target="_blank" style={{ boxShadow: 'none' }}>
+              <EmailIcon />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -104,8 +117,8 @@ const Layout = ({ location, title, children }) => {
         <main>{children}</main>
         <Footer />
       </div>
-    </div>
-  )
-}
+    </div >
+  );
+};
 
-export default Layout
+export default Layout;
