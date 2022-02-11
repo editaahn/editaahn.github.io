@@ -9,7 +9,7 @@ module.exports = {
     description: `Frontend Developer`,
     siteUrl: `https://editaahn.github.io`,
     social: {
-      github: `editaahn`,
+      github: `https://github.com/editaahn`,
     },
     email: `editaahn@yahoo.com`,
     defaultImage: "images/bg.jpeg",
@@ -79,10 +79,18 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     "gatsby-plugin-dark-mode",
     `gatsby-plugin-postcss`,
   ],
-}
+};
