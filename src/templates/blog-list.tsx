@@ -14,6 +14,8 @@ type Data = {
   site: {
     siteMetadata: {
       title: string;
+      social: Record<string, string>;
+      email: string;
     };
   };
   allMarkdownRemark: {
@@ -38,7 +40,7 @@ const BlogIndex = ({
   location,
   pageContext,
 }: PageProps<Data, PageContext>) => {
-  const siteTitle = data.site.siteMetadata.title;
+  const { title: siteTitle, social, email } = data.site.siteMetadata;
   const posts = data.allMarkdownRemark.edges;
   const { currentPage, totalPageCount } = pageContext;
 
@@ -48,7 +50,7 @@ const BlogIndex = ({
   const nextPage = `/${currentPage + 1}`;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} social={social} email={email}>
       <SEO title="All posts" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
@@ -114,6 +116,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        social {
+          github
+        }
+        email
       }
     }
     allMarkdownRemark(
