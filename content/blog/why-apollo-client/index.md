@@ -1,7 +1,7 @@
 ---
-title: "(번역) 아폴로 클라이언트를 쓰는 이유"
+title: "(번역) Apollo Client 1. 아폴로 클라이언트를 쓰는 이유"
 date: "2022-02-10T23:44:00"
-description: "공식문서를 번역합니다."
+description: "Apollo Client 공식문서 번역 첫 번째"
 categories: [code]
 comments: true
 ---
@@ -13,7 +13,7 @@ comments: true
 
 데이터 관리는 어려우면 안된다. 원격 및 로컬 데이터를 리액트 애플리케이션에서 쉽게 관리하는 방법을 궁금해하고 있다면, 잘 찾아오셨다. 이 문서를 통해 아폴로의 똑똑한 캐싱 방법을 배울 수 있고, 데이터 fetching에 대한 명확한 접근으로 당신이 코드를 더 적게 쓰고 성능을 개선하도록 도울 것이다.
 
-### 명확한 data fetching
+### 선언적 data fetching
 
 데이터 가져오기, 로딩 및 에러 상태 추적, UI 업데이트 등의 모든 로직은 useQuery Hook에 캡슐화된다. 이러한 캡슐화는 쿼리 결과를 아주 쉽게 컴포넌트에 주입한다. Apollo Client & React 용례를 보자.
 
