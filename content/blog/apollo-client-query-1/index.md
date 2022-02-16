@@ -211,3 +211,39 @@ Refetch는 `NetworkStatus.refetch`로 나타내고, polling 및 pagination을 �
     - none: `error.graphQLErrors`에 리턴. response의 `data`는 서버가 값을 반환하더라도 `undefined`로 반환된다. 네트워크 에러와 GraphQL 에러는 비슷한 응답 형태를 가진다는 것을 볼 수 있다.
     - ignore: `graphQLErrors`들이 무시되며 `error.graphQLErrors`는 생성되지 않는다. 반환된 `data`는 캐싱되고, 에러가 없는 것처럼 렌더된다.
     - all: data와 `error.graphQLErrors` 모두 생성되며, 일부 결과와 error 정보를 모두 렌더할 수 있도록 해준다.
+
+## useLazyQuery - 선택적 실행
+
+useQuery를 호출하는 컴포넌트를 리액트가 렌더할 때, Apollo Client는 자동으로 쿼리를 실행한다. 그러나 유저가 버튼을 클릭하는 것처럼, 각기 다른 이벤트에 반응하여 쿼리를 실행하고 싶다면 어떻게 할까?
+
+useLazyQuery 훅이 완벽한 답이다. useQuery와는 다르게, useLazyQuery를 호출할 때 쿼리를 바로 실행하지 않는다. 그 대신, 쿼리를 실행할 준비가 되었을 때 호출 가능한 쿼리 함수를 result 튜플 안에 반환한다.
+
+```jsx
+import React from 'react';
+
+import { useLazyQuery } from '@apollo/client';
+
+function DelayedQuery() {
+
+  const [getDog, { loading, error, data }] = useLazyQuery(GET_DOG_PHOTO);
+
+  if (loading) return <p>Loading ...</p>;
+  if (error) return `Error! ${error}`;
+
+  return (
+    <div>
+      {data?.dog && <img src={data.dog.displayImage} />}
+
+      <button onClick={() => getDog({ variables: { breed: 'bulldog' } })}>
+        Click me!
+      </button>
+    </div>
+  );
+}
+```
+
+`useLazyQuery`에 반환된 tuple의 첫 아이템이 쿼리 함수이다. 두 번째 아이템은 `useQuery`에서 반환하는 object와 같다.
+
+위에서 본 것 처럼, option들을 `useLazyQuery` 자체에 줄 수 있는 것처럼 쿼리 함수에도 넣을 수 있다. 특정 옵션을 두 군데에 다 넣었을 경우, 쿼리 함수에 넣은 값이 더 우선된다. default 옵션들은 `useLazyQuery`에 넣고, 쿼리 함수에서 그 옵션들을 커스텀하는 방법도 편리하게 사용할 수 있다.
+
+지원하는 옵션 전체 목록을 보려면 [API reference](https://www.apollographql.com/docs/react/api/react/hooks/#uselazyquery)를 확인하자.
