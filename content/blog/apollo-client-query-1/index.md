@@ -1,5 +1,5 @@
 ---
-title: "(번역) Apollo Client 2-1. 쿼리 > 실행, 캐싱, 로딩 및 에러 핸들링"
+title: "(번역) Apollo Client 2. 쿼리"
 date: "2022-02-15T23:47:00"
 description: "Apollo Client 공식문서 번역 두 번째"
 categories: [code]
@@ -247,3 +247,68 @@ function DelayedQuery() {
 위에서 본 것 처럼, option들을 `useLazyQuery` 자체에 줄 수 있는 것처럼 쿼리 함수에도 넣을 수 있다. 특정 옵션을 두 군데에 다 넣었을 경우, 쿼리 함수에 넣은 값이 더 우선된다. default 옵션들은 `useLazyQuery`에 넣고, 쿼리 함수에서 그 옵션들을 커스텀하는 방법도 편리하게 사용할 수 있다.
 
 지원하는 옵션 전체 목록을 보려면 [API reference](https://www.apollographql.com/docs/react/api/react/hooks/#uselazyquery)를 확인하자.
+
+## Fetch Policy 세팅하기
+
+`useQuery` 훅은 요청된 모든 데이터가 로컬에서 사용 가능한 상태인지 보기 위해 Apollo Client 캐시를 확인한다. 모든 데이터가 사용 가능한 상태이면, `useQuery`는 해당 데이터를 반환하고 GraphQL server에 쿼리를 요청하지 않는다. `cache-first` policy는 Apollo Client의 기본 **fetch policy**이다.
+
+주어진 쿼리에 대해 각각 다른 fetch policy를 적용할 수 있다. 그러려면, `fetchPolicy` option을 useQuery 호출 시 넣어야 한다.
+
+```jsx
+const { loading, error, data } = useQuery(GET_DOGS, {
+
+  fetchPolicy: "network-only" 
+	// network 요청 생성 전에 캐시를 체크하지 않는다.
+});
+```
+
+### `nextFetchPolicy`
+
+쿼리의 다음 fetch policy(`nextFetchPolicy`)도 특정할 수 있다. fetchPolicy는 쿼리의 첫 실행에 사용되고, nextFetchPolicy는 쿼리가 그 이후 캐시 업데이트에 어떻게 반응할지 결정하는 데에 사용한다.
+
+```jsx
+const { loading, error, data } = useQuery(GET_DOGS, {
+  fetchPolicy: "network-only",   // 첫 실행 시 사용
+  nextFetchPolicy: "cache-first" // 이후 실행 시 사용
+});
+```
+
+예를 들면, 쿼리가 항상 처음에 네트워크 요청을 보내지만 그 이후에 캐시를 쉽게 읽을 수 있도록 하려면 이 방법이 유용하다.
+
+### 지원되는 fetch policy
+
+- `[cache-first](https://www.apollographql.com/docs/react/data/queries/#cache-first)`
+- `[cache-only](https://www.apollographql.com/docs/react/data/queries/#cache-only)`
+- `[cache-and-network](https://www.apollographql.com/docs/react/data/queries/#cache-and-network)`
+- `[network-only](https://www.apollographql.com/docs/react/data/queries/#network-only)`
+- `[no-cache](https://www.apollographql.com/docs/react/data/queries/#no-cache)`
+- `[standby](https://www.apollographql.com/docs/react/data/queries/#standby)`
+
+## useQuery API
+
+`useQuery` 훅이 지원하는 옵션 및 result 필드는 아래에 정리되어 있다.
+
+대부분 `useQuery` 호출은 이런 옵션들을 대다수 생략해도 괜찮지만 이런 것들이 존재한다는 것을 알면 좋다.
+
+`useQuery` 훅 API에 대해 더 자세한 사용 예시를 보고 싶다면 이 [API reference](https://www.apollographql.com/docs/react/api/react/hooks/#usequery)를 참고하길 바란다.
+
+**Options**
+
+`useQuery` 훅은 아래의 옵션들을 받는다.
+
+> [옵션이름 / 타입] : 설명
+> 
+- `query` / DocumentNode
+    - [AST](https://www.apollographql.com/docs/kotlin/advanced/apollo-ast/)로 파싱되는, `gql` 템플릿 리터럴과 함께 사용되는 GraphQL 쿼리 스트링
+- `variables` / { [key: string]: any }
+    - 쿼리 실행을 위해 요구되는 GraphQL 변수 전체를 포함하는 object
+    - object의 각 key, value는 변수의 이름과 값
+- `errorPolicy` / ErrorPolicy
+    - 쿼리가 응답(GraphQL 에러 및 결과값)을 다루는 방식을 규정함
+    - 기본값은 `none` 이고, 쿼리 결과에 특정한 result가 아닌 에러 상세 정보가 담긴다는 것을 의미
+- `onCompleted` / (data: TData | {}) => void
+    - 쿼리가 에러 없이 (또는 `errorPolicy`가 ignore이거나, 부분 데이터가 반환되었을 때) 성공적으로 완료되었을 때 콜백 함수
+    - 이 함수는 쿼리의 result 내 `data`에 전달된다.
+    
+
+...[More Detail](https://www.apollographql.com/docs/react/data/queries/#options)
