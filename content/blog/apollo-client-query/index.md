@@ -1,7 +1,7 @@
 ---
 title: "(번역) Apollo Client 2. 쿼리"
 date: "2022-02-15T23:47:00"
-description: "Apollo Client 공식문서 번역 두 번째"
+description: "Apollo Client 공식문서 - Query"
 categories: [code]
 comments: true
 ---
@@ -277,38 +277,9 @@ const { loading, error, data } = useQuery(GET_DOGS, {
 
 ### 지원되는 fetch policy
 
-- `[cache-first](https://www.apollographql.com/docs/react/data/queries/#cache-first)`
-- `[cache-only](https://www.apollographql.com/docs/react/data/queries/#cache-only)`
-- `[cache-and-network](https://www.apollographql.com/docs/react/data/queries/#cache-and-network)`
-- `[network-only](https://www.apollographql.com/docs/react/data/queries/#network-only)`
-- `[no-cache](https://www.apollographql.com/docs/react/data/queries/#no-cache)`
-- `[standby](https://www.apollographql.com/docs/react/data/queries/#standby)`
-
-## useQuery API
-
-`useQuery` 훅이 지원하는 옵션 및 result 필드는 아래에 정리되어 있다.
-
-대부분 `useQuery` 호출은 이런 옵션들을 대다수 생략해도 괜찮지만 이런 것들이 존재한다는 것을 알면 좋다.
-
-`useQuery` 훅 API에 대해 더 자세한 사용 예시를 보고 싶다면 이 [API reference](https://www.apollographql.com/docs/react/api/react/hooks/#usequery)를 참고하길 바란다.
-
-**Options**
-
-`useQuery` 훅은 아래의 옵션들을 받는다.
-
-> [옵션이름 / 타입] : 설명
-> 
-- `query` / DocumentNode
-    - [AST](https://www.apollographql.com/docs/kotlin/advanced/apollo-ast/)로 파싱되는, `gql` 템플릿 리터럴과 함께 사용되는 GraphQL 쿼리 스트링
-- `variables` / { [key: string]: any }
-    - 쿼리 실행을 위해 요구되는 GraphQL 변수 전체를 포함하는 object
-    - object의 각 key, value는 변수의 이름과 값
-- `errorPolicy` / ErrorPolicy
-    - 쿼리가 응답(GraphQL 에러 및 결과값)을 다루는 방식을 규정함
-    - 기본값은 `none` 이고, 쿼리 결과에 특정한 result가 아닌 에러 상세 정보가 담긴다는 것을 의미
-- `onCompleted` / (data: TData | {}) => void
-    - 쿼리가 에러 없이 (또는 `errorPolicy`가 ignore이거나, 부분 데이터가 반환되었을 때) 성공적으로 완료되었을 때 콜백 함수
-    - 이 함수는 쿼리의 result 내 `data`에 전달된다.
-    
-
-...[More Detail](https://www.apollographql.com/docs/react/data/queries/#options)
+- cache-first
+- cache-only
+- cache-and-network
+- network-only
+- no-cache
+- standby
