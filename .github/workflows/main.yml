@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
-  pull_request_review: 
-    branches: [main]
   
 
   # Allows you to run this workflow manually from the Actions tab
@@ -33,4 +31,4 @@ jobs:
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: x-access-token:${{ secrets.GITHUB_TOKEN }}
-          deploy-branch: dev
+          deploy-branch: publish
