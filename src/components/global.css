@@ -117,6 +117,10 @@ td {
   word-break: break-word;
 }
 
+code {
+  word-break: break-word;
+}
+
 @media only screen and (min-width: 768px) {
   .sidebar {
     height: 100vh;
