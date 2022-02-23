@@ -1,7 +1,7 @@
 ---
 title: "(번역) Apollo Client - useQuery의 option 및 result"
 date: "2022-02-20T01:38:00"
-categories: [code]
+categories: [apollo]
 comments: true
 ---
 <br>`useQuery` 훅이 지원하는 option 및 result 필드는 아래에 정리되어 있다.<br>

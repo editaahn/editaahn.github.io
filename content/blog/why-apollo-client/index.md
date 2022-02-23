@@ -2,7 +2,7 @@
 title: "(번역) Apollo Client 1. 아폴로 클라이언트를 쓰는 이유"
 date: "2022-02-10T23:44:00"
 description: "Apollo Client 공식문서 - Why Apollo?"
-categories: [code]
+categories: [apollo]
 comments: true
 ---
 

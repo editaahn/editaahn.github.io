@@ -2,7 +2,7 @@
 title: "(번역) Batching Client GraphQL Queries"
 date: "2022-02-06T10:27:00"
 description: "우리 회사에서 사용 중인 Batching에 대해 자세하게 알고 싶어 아래 글을 번역했다."
-categories: [code]
+categories: [apollo]
 comments: true
 ---
 
