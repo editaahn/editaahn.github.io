@@ -2,7 +2,7 @@
 title: "(번역) 타입스크립트를 활용한 5가지 리팩터링 팁"
 date: "2022-02-01T18:00:00"
 description: "TypeScript를 이용한 리팩터링 아이디어를 얻고 싶어서 아래 글을 읽어 보다가 번역했다."
-categories: [code]
+categories: [typescript]
 comments: true
 ---
 
