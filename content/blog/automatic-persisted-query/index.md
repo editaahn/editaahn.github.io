@@ -63,3 +63,42 @@ APQ를 직접 커맨드 라인을 통해 테스트할 수 있다. APQ 요청이 
 CDN 뒤에 Apollo Server를 운영하는 애플리케이션은 APQ를 사용하기 아주 좋다. CDN은 주로 `GET` 요청만을 캐싱한다. 그러나 GraphQL 쿼리 길이가 긴 경우가 많아서 GET 요청에 대체로 잘 맞지는 않는다.
 
 APQ link가 `createPersistedQueryLink({ useGETForHashedQueries: true })` 에 의해 생성되어 있으면, Apollo Client는 짧은 hashed query는 자동으로 `GET` 요청으로 보내고, CDN은 해당 요청을 처리할 수 있다. 긴 query나 모든 mutation에 대해서는 POST 요청 방식을 사용하게 된다.
+
+## 캐시 설정
+
+Apollo Server는 디폴트로 APQ 레지스트리를 로컬 인메모리 캐시에 저장한다. `ApolloServer` constructor의 최상위에 `cache`의 값으로 다른 store를 넣어주면, 해당 store의 캐시를 사용한다.
+
+또한, 캐시를 APQ 레지스트리에 맞게 설계할 수 있다. 그렇게 하려면, 선호하는 캐시 클래스의 인스턴스를 `ApolloServer` constructor 옵션으로 `persistedQueries` object를 넣고, 그 안에 속성으로 `cache`를 넣어 값을 지정해준다. 아래 data store들이 지원된다.
+
+| data store/class name | library |
+| --- | --- |
+| Local in-memory cache (default)<br>`InMemoryLRUCache` | apollo-server-caching |
+| Memcached<br>`MemcachedCache` | apollo-server-cache-memcached |
+| Redis (single instance or Sentinel)<br>`RedisCache` | apollo-server-cache-redis |
+| Redis Cluster<br>`RedisClusterCache` | apollo-server-cache-redis |
+
+### 적용 예시
+
+**Memcached**
+```tsx
+$ npm install apollo-server-cache-memcached
+```
+
+```tsx
+const { MemcachedCache } = require('apollo-server-cache-memcached');
+const { ApolloServer } = require('apollo-server');
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+
+  persistedQueries: {
+    cache: new MemcachedCache(
+      ['memcached-1.local', 'memcached-2.local', 'memcached-3.local'],
+      { retries: 10, retry: 10000 }, // Options
+    ),
+  },
+});
+```
+
+[Other methods](https://www.apollographql.com/docs/apollo-server/performance/apq/#cache-configuration)
