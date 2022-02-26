@@ -66,9 +66,9 @@ APQ link가 `createPersistedQueryLink({ useGETForHashedQueries: true })` 에 의
 
 ## 캐시 설정
 
-Apollo Server는 디폴트로 APQ 레지스트리를 로컬 인메모리 캐시에 저장한다. `ApolloServer` constructor의 최상위에 `cache`의 값으로 다른 store를 넣어주면, 해당 store의 캐시를 사용한다.
+Apollo Server는 디폴트로 APQ 레지스트리를 로컬 인메모리 캐시에 저장한다. `ApolloServer` constructor의 최상위에 `cache`의 값으로 다른 캐시를 넣어주면, 해당 캐시를 사용한다.
 
-또한, 캐시를 APQ 레지스트리에 맞게 설계할 수 있다. 그렇게 하려면, 선호하는 캐시 클래스의 인스턴스를 `ApolloServer` constructor 옵션으로 `persistedQueries` object를 넣고, 그 안에 속성으로 `cache`를 넣어 값을 지정해준다. 아래 data store들이 지원된다.
+또한, 특정한 APQ 레지스트리의 캐시를 바라보게 할 수 있다. `ApolloServer` constructor 옵션으로 `persistedQueries` object를 넣고, 그 안에 속성으로 `cache`를 넣어 선호하는 캐시 클래스의 인스턴스를 넣는다. 아래 data store들이 제공된다.
 
 | data store/class name | library |
 | --- | --- |
@@ -102,3 +102,47 @@ const server = new ApolloServer({
 ```
 
 [Other methods](https://www.apollographql.com/docs/apollo-server/performance/apq/#cache-configuration)
+
+## 캐시 time-to-live(TTL) 조정
+
+캐시의 TTL 값은 등록된 APQ가 얼마나 오래 캐시에 보존될 지 결정한다. 캐시된 쿼리의 TTL이 경과해 지워지고 나면, 다음에 클라이언트에서 전송되었을 때 재등록된다. 
+
+Apollo Server의 default인 in-memory store는 APQ의 TTL을 정해두지 않는다. (캐시 파기 정책에 따라 덮여지기 전까지 APQ를 캐시된 상태로 남겨둔다.) 
+
+지원되는 다른 모든 스토어들에서는 기본 TTL 설정이 300초이다. `persistedQueries` 옵션의 `ttl` attribute를 통해서 간단하게 이 값을 덮어쓰거나 disable할 수 있다. 
+
+```tsx
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  persistedQueries: {
+    ttl: 900, // 15 minutes
+  },
+});
+```
+
+TTL을 전부 disable시키려면 `ttl`에 `null`을 넣는다.
+
+```tsx
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  persistedQueries: {
+    ttl: null,
+  },
+});
+```
+
+in-memory cache의 default 동작은, 캐시의 기본 파기 정책에 의해 덮어씌워지기 전까지 APQ를 캐시에 그대로 두는 것이다.
+
+## Disabling APQ
+
+`persistedQueries` attribute를 `false`로 설정함으로써 APQ를 완전히 disable 시킬 수 있다.
+
+```tsx
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  persistedQueries: false,
+});
+```
