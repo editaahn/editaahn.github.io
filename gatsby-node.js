@@ -15,7 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
           limit: 1000
         ) {
           pageInfo {
-            pageCount
+            totalCount
           }
           group(field: frontmatter___categories) {
             fieldValue
@@ -39,17 +39,17 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
-  const { group: postGroups, pageInfo: { pageCount } } = result.data.allMarkdownRemark;
+  const { group: postGroups, pageInfo: { totalCount } } = result.data.allMarkdownRemark;
 
   // Create main list page
-  Array.from({ length: pageCount }).forEach((_, i) => {
+  Array.from({ length: totalCount }).forEach((_, i) => {
     createPage({
       path: i === 0 ? '/' : `/${i + 1}`,
       component: path.resolve("./src/templates/blog-list.tsx"),
       context: {
         limit: POST_PER_PAGE,
         skip: i * POST_PER_PAGE,
-        totalPageCount: pageCount,
+        totalPageCount: Math.ceil(totalCount / POST_PER_PAGE),
         currentPage: i + 1,
       },
     });
