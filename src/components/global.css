@@ -50,10 +50,16 @@ blockquote {
 
 ul, ol {
   margin-left: 0;
+  margin-bottom: 1rem;
 }
 
 li {
   margin-left: 20px;
+  margin-bottom: calc(1.2rem / 2);
+}
+
+p {
+  margin-bottom: 1.2rem;
 }
 
 .footnotes {
