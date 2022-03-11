@@ -71,3 +71,45 @@ export default Blog
 ```
 
 - 사용 가능한 paremeter와 props 전체 보기: [getStaticProps API reference](https://nextjs.org/docs/api-reference/data-fetching/get-static-props)
+
+## server-side 코드 직접 쓰기
+
+`getStaticProps`가 server-side에서만 실행되므로, 브라우저에 사용될 JS bundle은 포함하지 않는다. 브라우저를 거치지 않고 데이터베이스에 쿼리를 바로 보낼 수 있다. server-side 코드를 `getStaticProps`에서 바로 쓸 수 있다는 의미이다.
+
+예를 들어보자. 어떤 API route가 CMS에서 데이터를 가져오는 데에 사용된다. `getStaticProps`에서 이 API route를 직접 호출한다. 추가적인 호출로 인해 성능을 저하시킨다. 
+
+이렇게 하는 대신에, `lib/` 디렉터리를 사용하여 CMS에서 데이터를 가져오는 로직을 `getStaticProps`와 공유할 수 있다.
+
+```jsx
+// lib/fetch-posts.js
+
+// 다음 함수는 `lib/` 디렉터리로부터
+// getStaticProps 및 API route에 공유된다.
+export async function loadPosts() {
+  // 외부 API 엔드포인트를 호출해서 posts를 가져오자.
+  const res = await fetch('https://.../posts/')
+  const data = await res.json()
+
+  return data
+}
+```
+
+```jsx
+// pages/blog.js
+import { loadPosts } from '../lib/load-posts'
+
+// Server-side에서만 실행
+export async function getStaticProps() {
+  // `/api` route를 호출하지 않고 같은 함수를 바로 쓸 수 있다.
+  const posts = await loadPosts()
+
+  // page component에 props 전달
+  return { props: { posts } }
+}
+```
+
+### HTML과 JSON 정적 생성
+
+빌드타임에 `getStaticProps`를 통해 페이지가 pre-rendered되었을 때, Next.js는 HTML 뿐 아니라 JSON file을 생성한다. 이 JSON은 `getStaticProps`를 실행한 result 데이터를 가지고 있다.
+
+이 JSON file은 [next/link](https://nextjs.org/docs/api-reference/next/link) 또는 [next/router](https://nextjs.org/docs/api-reference/next/router)를 통해 client-side routing에 이용이 된다. `getStaticProps`를 사용하여 pre-rendered된 페이지로 이동하면, Next.js는 이 JSON file을 가져와 page component의 props로 사용한다. 즉, 클라이언트에서 페이지 전환 시에는, export된 JSON만 사용되므로 getStaticProps를 호출하지 않는다.
