@@ -12,15 +12,15 @@ comments: true
 
 클라이언트는 GraphQL string을 포함한 HTTP 요청을 Apollo Server에 쿼리를 보낸다. Graph의 스키마에 따라 유효한 query string 사이즈가 임의대로 커질 수 있다. query string이 커지면, latency 및 네트워크 사용량이 늘어나 클라이언트 성능을 현저히 떨어뜨릴 수 있다.
 
-큰 쿼리 스트링의 네트워크 성능을 개선하기 위해, Apollo Server는 **Automatic Persisted Queries** (**APQ**)를 지원한다. Persisted query는 서버사이드에 캐시된 query string으로, 고유 식별자를 가지고 있다. (SHA-256 hash 알고리즘이다.)
+큰 쿼리 스트링의 네트워크 성능을 개선하기 위해, Apollo Server는 **Automatic Persisted Queries** (**APQ**)를 지원한다. Persisted query는 서버사이드에 캐시된 query string으로, 고유 식별자를 가지고 있다. (SHA-256 hash 알고리즘을 이용)
 
-클라이언트는 query string 대신에 이 식별자를 보내 요청의 사이즈를 획기적으로 줄인다. (응답의 사이즈에 영향은 없다)
+클라이언트는 query string 대신에 이 식별자를 보내 요청 사이즈를 획기적으로 줄인다. (응답 사이즈에 영향은 없다)
 
 요청하는 client 쪽에서 query string를 처음에 Apollo Server에 보내줘야 이를 보존할 수 있다. 따라서 각각의 고유한 query string이 최소한 한 번은 보내져야 한다. 아무 클라이언트나 query string을 persist로 보내면, 해당 query를 실행하는 모든 client는 APQ의 이점을 누릴 수 있다.
 
 ![APQ](../../assets/automatic-persisted-query/apq.png)
 
-persisted query는 특히 클라이언트가 GET 요청 쿼리들을 보낼 때 효과적이다. 클라이언트가 브라우저 캐시와 CDN 연동의 이점을 이용할 수 있게 한다.
+persisted query는 특히 클라이언트가 GET 요청 쿼리들을 보낼 때 효과적이다. 브라우저 캐시와 CDN 연동의 이점을 클라이언트가 이용할 수 있게 한다.
 
 쿼리 식별자들은 항상 같은 결과를 도출하는(deterministic) hash 형태이기 때문에, 클라이언트들은 런타임에 이것들을 생성한다. 추가적인 빌드 과정은 필요하지 않다.
 
@@ -60,9 +60,9 @@ APQ를 직접 커맨드 라인을 통해 테스트할 수 있다. APQ 요청이 
 
 ## CDN에서 APQ를 이용해 `GET` 요청하기
 
-CDN 뒤에 Apollo Server를 운영하는 애플리케이션은 APQ를 사용하기 아주 좋다. CDN은 주로 `GET` 요청만을 캐싱한다. 그러나 GraphQL 쿼리 길이가 긴 경우가 많아서 GET 요청에 대체로 잘 맞지는 않는다.
+CDN과 Apollo Server를 운영한다면, APQ를 사용하기 아주 좋다. CDN은 주로 `GET` 요청만을 캐싱한다. 많은 GraphQL 쿼리는 너무 길어서 캐시 가능한 `GET` 요청에는 적합하지 않는다.
 
-APQ link가 `createPersistedQueryLink({ useGETForHashedQueries: true })` 에 의해 생성되어 있으면, Apollo Client는 짧은 hashed query는 자동으로 `GET` 요청으로 보내고, CDN은 해당 요청을 처리할 수 있다. 긴 query나 모든 mutation에 대해서는 POST 요청 방식을 사용하게 된다.
+APQ link가 `createPersistedQueryLink({ useGETForHashedQueries: true })` 에 의해 생성되어 있으면, Apollo Client는 짧은 hashed query를 자동으로 `GET` 요청으로 보내고, CDN은 해당 요청을 처리할 수 있다. 긴 query나 모든 mutation에 대해서는 POST 요청 방식을 사용하게 된다.
 
 ## 캐시 설정
 
