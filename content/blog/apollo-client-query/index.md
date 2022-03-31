@@ -1,5 +1,5 @@
 ---
-title: "(번역) Apollo Client 2. 쿼리"
+title: "Apollo Client : 쿼리"
 date: "2022-02-15T23:47:00"
 description: "Apollo Client 공식문서 - Query"
 categories: [apollo]
