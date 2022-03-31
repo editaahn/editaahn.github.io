@@ -1,5 +1,5 @@
 ---
-title: "Apollo Client - Automatic persisted queries"
+title: "Apollo Client : Automatic persisted queries"
 date: "2022-02-25T00:35:00"
 description: "요청을 작게 보내 network 성능을 개선하기"
 categories: [apollo]

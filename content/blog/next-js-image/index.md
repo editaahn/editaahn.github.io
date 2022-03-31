@@ -1,5 +1,5 @@
 ---
-title: "Next.js Image"
+title: "Next.js : Image"
 date: "2022-03-03T23:49:00"
 description: "Next.js에서 제공하는 Image 컴포넌트에 대해서 알아보자."
 categories: [nextjs]

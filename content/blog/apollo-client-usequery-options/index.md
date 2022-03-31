@@ -1,5 +1,5 @@
 ---
-title: "(번역) Apollo Client - useQuery의 option 및 result"
+title: "Apollo Client : useQuery의 option 및 result"
 date: "2022-02-20T01:38:00"
 categories: [apollo]
 comments: true

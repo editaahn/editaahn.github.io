@@ -1,5 +1,5 @@
 ---
-title: "Apollo Client - Query - Fetch policies"
+title: "Apollo Client : Query - Fetch policies"
 date: "2022-02-22T00:30:00"
 description: "Apollo Client 쿼리에서 지원하는 fetch Policy들을 상세하게 살펴보자."
 categories: [apollo]
