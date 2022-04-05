@@ -56,15 +56,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-62251910-1`,
+        trackingId: `G-S9NT0M2MGG`,
       },
     },
     `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Ryz`,
-        short_name: `Ryz`,
+        name: `Rita Ahn`,
+        short_name: `Rita`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
