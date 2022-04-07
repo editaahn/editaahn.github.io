@@ -1,11 +1,11 @@
 ---
-title: "Apollo Client : useMutation의 option 및 result"
+title: "Apollo Client : useMutation의 options"
 date: "2022-04-03T11:43:00"
 categories: [apollo]
 comments: true
 ---
 
-useMutation API가 어떤 옵션을 받고, 어떤 result field를 반환하는지 자세히 살펴보자.
+useMutation API가 어떤 옵션을 받는지 자세히 살펴보자.
 
 ## Options
 
@@ -22,3 +22,19 @@ useMutation API가 어떤 옵션을 받고, 어떤 result field를 반환하는�
 | onQueryUpdated<br>`(observableQuery: ObservableQuery, diff: Cache.DiffResult, lastDiff: Cache.DiffResult | undefined) => boolean | TResult` | mutation 후 캐시 데이터를 업데이트하는 쿼리들을 가로채는 콜백 함수(refetchQueries 필드 내에 포함되어 client.mutate로 전달된 쿼리들도 포함)<br><br>`onQueryUpdated가` Promise를 리턴하면, 이 Promise를 마지막 순서인 mutation Promise가 await한다. `false`를 리턴하면 쿼리는 무시된다. |
 | awaitRefetchQueries<br>`boolean` | `true`면 refetchQueries의 모든 쿼리들이 모두 완료되고 나서 mutation이 완료된다.<br>- default value는 `false` (query들을 비동기로 refetch함) |
 | ignoreResults<br>`boolean` | `true`면 mutation의 data 프로퍼티가 result로 업데이트되지 않는다.<br>- default value는 `false`  |
+
+#### - Networking 관련
+
+| 이름/타입 | 설명 |
+| --- | --- |
+| notifyOnNetworkStatusChange<br>`boolean` | true면, 네트워크 상태가 변경되거나 에러가 나타날 때 언제든, 진행중인 mutation의 컴포넌트가 리렌더된다.<br>- default value는 false |
+| client<br>`ApolloClient` | ApolloClient의 인스턴스. mutation을 실행하는 데에 사용한다. 기본적으로 context를 통해서 내려온 인스턴스가 사용되나, 여기서 다른 인스턴스를 제공할 수 있다. |
+| context<br>`Record<string, any>` | Apollo Link를 사용하고 있다면, 이 object는 link chain으로 전달되는 `context` object의 초기값이 된다. |
+
+#### - 캐싱 관련
+
+| 이름/타입 | 설명 |
+| --- | --- |
+| update<br>`(cache: ApolloCache, mutationResult: FetchResult) => void` | mutation 완료 후 Apollo Client 캐시를 업데이트할 떄 쓰는 함수<br>- [자세한 내용](https://www.apollographql.com/docs/react/data/mutations#updating-the-cache-after-a-mutation) |
+| optimisticResponse<br>`Object` | 이 값이 제공되면, mutation이 완료되기 전에 임시 응답을 캐시한다. 즉각적인 UI 업데이트가 가능하다.<br>- [자세한 내용](https://www.apollographql.com/docs/react/performance/optimistic-ui/) |
+| fetchPolicy<br>`MutationFetchPolicy` | - mutation의 결과로 아폴로 캐시를 업데이트하지 않으려면 `no-cache`를 옵션으로 제공하면 된다. <br>- 기본값은 `network-only`이다.<br>- query와는 다르게, mutation은 위 2개 말고는 fetchPolicy를 제공하지 않는다. |
