@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "gatsby";
-import { ThemeToggler } from "gatsby-plugin-dark-mode";
-import { scale } from "../utils/typography";
+import React from 'react';
+import { Link } from 'gatsby';
+import { ThemeToggler } from 'gatsby-plugin-dark-mode';
+import { scale } from '../utils/typography';
 
-import Footer from "./footer";
-import "./global.css";
+import Footer from './footer';
+import './global.css';
 import GithubIcon from '../assets/github.svg';
 import EmailIcon from '../assets/email.svg';
 
