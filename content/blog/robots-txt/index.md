@@ -67,7 +67,7 @@ Disallow: /
     - 디렉터리라면 `/` 기호로 끝내야함
     - 주의사항: disallow를 쓴다고 검색 결과에 안 나오는 게 아니다. 다른 페이지에서 참조되는 경우는 disallow에 추가해도 검색 결과에 노출될 수 있으나 설명이 보이지 않는다.
         
-        ![Untitled](robots%20txt%204666d/Untitled.png)
+    ![image](../../assets/robots-txt/empty-content.png)
         
 - Allow
     - 주로 disallow 지시어로 허용하지 않은 디렉터리 하위에 있는 디렉터리나 페이지를 크롤링 허용할 때 쓰임
