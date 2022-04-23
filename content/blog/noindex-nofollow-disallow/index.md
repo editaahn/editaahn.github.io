@@ -1,4 +1,3 @@
-
 ---
 title: "Noindex, Nofollow & Disallow"
 date: "2022-04-23T23:46:00"
@@ -101,7 +100,7 @@ Nofollow 태그는 2곳 중 하나에 넣을 수 있다.
 <meta name=”robots” content=”nofollow” />
 ```
 
-1. 링크 코드 : 개별 링크에 대해 nofollow
+2. 링크 코드 : 개별 링크에 대해 nofollow
 
 ```html
 <a href=”example.html” rel=”nofollow”>example page</a>
