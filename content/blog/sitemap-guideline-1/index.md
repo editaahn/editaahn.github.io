@@ -64,7 +64,7 @@ comments: true
 5. UTF-8로 사이트맵 파일 인코딩
 
 6. 사이트맵 파일은 50MB, url 5만개까지만 허용됨
-    - sitemap.xml은 sitemap 여러개를 가질 수 있음
+    - sitemapindex 파일은 sitemap 여러개를 가질 수 있음
         - 사이트맵의 규모가 커졌을 때 `sitemapindex` 을 사용
         - `sitemapindex` 하위에 sitemap 다수 포함 가능
         
