@@ -9,6 +9,7 @@ comments: true
 ## 사이트맵 (sitemap.xml)
 
 사이트의 페이지들을 검색엔진이 더 잘 가져갈 수 있게 기술한 문서 파일
+*Googlebot에 한해서는 filename이 반드시 sitemap일 필요는 없으나, 다른 모든 search bot에 읽히기 위해서 sitemap이라고 정하는 것이 좋음
 
 ### 용도
 
