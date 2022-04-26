@@ -1,15 +1,14 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm, scale } from "../utils/typography";
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
-  const post = data.markdownRemark
+  const post = data.markdownRemark;
   const { title: siteTitle, social, email } = data.site.siteMetadata;
-  const { previous, next } = pageContext
 
   return (
     <Layout location={location} title={siteTitle} social={social} email={email}>
@@ -52,32 +51,25 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           style={{
             display: `flex`,
             flexWrap: `wrap`,
-            justifyContent: `space-between`,
+            justifyContent: `flex-start`,
             listStyle: `none`,
-            padding: 0,
           }}
         >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
+          <li style={{ marginLeft: 0 }}>
+            <Link to="/">↖︎ all posts</Link>
           </li>
           <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
+            {post.frontmatter.categories?.length &&
+              <Link to={`/${post.frontmatter.categories[0]}`}>← category posts</Link>
+            }
           </li>
         </ul>
       </nav>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -94,7 +86,8 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        categories
       }
     }
   }
-`
+`;
