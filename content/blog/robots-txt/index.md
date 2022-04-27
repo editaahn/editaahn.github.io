@@ -75,7 +75,10 @@ Disallow: /
 - Sitemap
     - 선택사항
     - 정규화된 URL 사용 필요 (bad: 상대 URL이거나, 프로토콜을 포함하지 않는 URL)
-    
+- Noindex
+    - 선택사항
+    - 페이지가 검색 결과에 노출되지 않도록 함
+    - 자세한 용례는 다음 글인 [Noindex, Nofollow & Disallow](https://rita-blog.vercel.app/noindex-nofollow-disallow/) 참고
 
 ### Tips
 
