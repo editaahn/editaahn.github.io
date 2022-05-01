@@ -50,7 +50,7 @@ comments: true
 
 document의 onload가 끝나고 3초 안에, 미리 불러온 리소스가 쓰이지 않으면 Chrome은 콘솔에 경고 메시지를 띄운다. 퍼포먼스를 개선하려고 굳이 미리 불러왔는데 빠르게 쓰지를 않는다면, 필요 없는 작업을 했을 뿐더러 사용자의 데이터를 낭비하는 일일 뿐이다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b2c2b79-5b57-440c-a35d-962fff7ad662/Untitled.png)
+![warning-of-preload](../../assets/link-prefetch-preload/warning-preload.png)
 
 ## 기타 알아둘 사항
 
