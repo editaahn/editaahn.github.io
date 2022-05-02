@@ -41,7 +41,6 @@ comments: true
 ```html
 <link rel="prefetch" href="style.css">
 ```
-
  
 
 ## 사용자의 데이터를 낭비할 수도 있지 않을까?
@@ -60,11 +59,10 @@ document의 onload가 끝나고 3초 안에, 미리 불러온 리소스가 쓰�
     - [사용 가능한 값들](https://developer.mozilla.org/ko/docs/Web/HTML/Element/link#attr-as)
 - 같은 리소스를 중복으로 불러오는 경우(double fetch)가 있어 주의가 필요하다.
     - preload의 fallback으로 prefetch를 쓰는 경우
-    - 폰트를 preload할 때 crossorigin ****속성을 안 쓰는 경우
+    - 폰트를 preload할 때 crossorigin 속성을 안 쓰는 경우
     - script를 preload할 때 as를 안 쓰는 경우 (이외에도 as를 안 쓰면 preload의 이점을 못 누릴 수 있음)
-    
 
 ## References
 
-- [https://stackoverflow.com/questions/52764401/what-are-the-differences-between-html-preload-and-prefetch](https://stackoverflow.com/questions/52764401/what-are-the-differences-between-html-preload-and-prefetch)
-- [https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)
+- [The Difference Between HTML Preload And Prefetch](https://stackoverflow.com/questions/52764401/what-are-the-differences-between-html-preload-and-prefetch)
+- [Preload, Prefetch And Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)
