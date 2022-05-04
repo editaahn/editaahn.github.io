@@ -22,17 +22,17 @@ comments: true
 
 ## Noindex Meta Tag?
 
-‘noindex’ 태그는 검색 엔진들이 해당 페이지를 검색 결과에 포함하지 말라고 지시한다.
+‘noindex’ 태그는 검색 엔진들이 해당 페이지를 검색 결과에 포함하지 않게끔 한다.
 
 페이지를 noindexing하는 가장 흔한 방법은 HTML의 head 영역이나 응답 headers에 이 태그를 넣는 것이다. 검색 엔진이 이 정보를 보게 허용하려면 페이지는 robots.txt 파일에서 disallow를 사용해 블로킹되면 안된다. 페이지가 robots.txt에 의해 블락되면, 구글은 noindex 태그를 아예 보지 못하고, 그 페이지는 검색 결과에 여전히 노출된다.
 
-검색 엔진이 페이지에 대해 찾지 못하게 하려면 head 내에 아래처럼 추가한다.
+검색 엔진이 이 페이지에 대해 찾지 못하게 하려면 head 내에 아래처럼 추가한다.
 
 ```html
-<meta name=”robots” content=”noindex, follow”>
+<meta name="robots" content="noindex, nofollow">
 ```
 
-`content`의 두번째 파트는 페이지의 모든 링크들을 추적하지 말라는 것을 의미하는데, 자세한 건 밑에서 설명할 예정이다.
+`content`의 nofollow는 페이지의 모든 링크들을 추적하지 말라는 의미인데, 자세한 건 밑에서 설명할 예정이다.
 
 HTTP header에서 X-Robots-Tag를 넣음으로서 위 방법을 대체할 수도 있다.
 
@@ -42,7 +42,7 @@ X-Robots-Tag: noindex
 
 ## Noindex를 robots.txt 파일에서 사용하기
 
-noindex 태그를 robots.txt 파일에 넣는 방법도 검색 결과에서 페이지를 제외시킬 수 있다. 더욱 빠르고 쉽게 많은 페이지들을 noindex 시키는 방법이다.
+noindex 태그를 robots.txt 파일에 넣음으로써 검색 결과에서 페이지를 제외시킬 수 있다. 많은 페이지들을 더욱 빠르고 쉽게 noindex 시키는 방법이다.
 
 ```html
 Noindex: /robots-txt-noindexed-page/
@@ -52,7 +52,7 @@ Noindex: /robots-txt-noindexed-page/
 
 ## Disallow 지시어
 
-robots.txt를 통해 페이지를 disallow한다는 것은 검색 엔진에게 페이지를 크롤링하지 말라고 하는 것이다. 읽는 사람들 또는 검색 트래픽에 필요가 없는 페이지들이나 파일이 많다면 유용한 방법이다. 검색 엔진이 이런 페이지들을 크롤링하는 데에 시간을 낭비하지 않게 되기 때문이다.
+robots.txt를 통해 페이지를 disallow하는 것은 검색 엔진에게 페이지를 크롤링하지 말라고 하는 것이다. 읽는 사람들 또는 검색 트래픽에 필요가 없는 페이지들이나 파일이 많다면 유용한 방법이다. 검색 엔진이 이런 페이지들을 크롤링하는 데에 시간을 낭비하지 않게 되기 때문이다.
 
 disallow를 넣으려면 robots.txt에 아래와 같이 추가한다.
 
@@ -87,9 +87,7 @@ Noindex: /example-page-2/
 ## Nofollow Tag?
 
 검색 엔진이 페이지 내부에 링크된 페이지들의 중요도를 결정하지 못하게 하고 해당 사이트 내 다른 URL을 더 탐색하지 못하도록 한다.
-
 nofollow를 쓰는 대부분의 경우를 보면, 댓글 내 링크, 직접 컨트롤하지 않는 다른 컨텐츠, 광고 링크나 위젯/인포그래픽 같은 embed, 방문자 글 내부의 링크, 주제에서 벗어난 link들이다.
-
 역사적으로 SEO는 내부 PageRank를 더 중요한 페이지로 이동시키기 위해 선별적으로 nofollow하는 링크를 가지고 있다.
 
 Nofollow 태그는 2곳 중 하나에 넣을 수 있다.
@@ -97,13 +95,13 @@ Nofollow 태그는 2곳 중 하나에 넣을 수 있다.
 1. HTML <head> : 페이지 내부의 모든 링크에 대해 nofollow
 
 ```html
-<meta name=”robots” content=”nofollow” />
+<meta name="robots" content="nofollow" />
 ```
 
 2. 링크 코드 : 개별 링크에 대해 nofollow
 
 ```html
-<a href=”example.html” rel=”nofollow”>example page</a>
+<a href="example.html" rel="nofollow">example page</a>
 ```
 
 nofollow는 링크된 페이지를 크롤링되지 않도록 완전히 막는 방법이 아니다. 그저 특정 링크를 통해서 크롤링되지 않도록 막는 방법이다. 구글은 nofollowed된 링크에 있는 URL을 크롤링하지 않는다.
