@@ -16,9 +16,7 @@ comments: true
 
 ### 데이터 크기 및 연산 여부에 따라 다름
 
-![image](../../assets/javascript-loop/test.png)
-
-image from https://betterprogramming.pub/which-is-the-fastest-while-for-foreach-for-of-9022902be15e
+![image from betterprogramming.pub](../../assets/javascript-loop/test.png)
 
 **for forward vs reverse**
 
