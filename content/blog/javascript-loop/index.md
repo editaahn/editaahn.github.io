@@ -14,13 +14,6 @@ comments: true
 
 ## 뭐가 제일 빠른가?
 
-### 데이터 크기 및 연산 여부에 따라 다름
-
-![image from betterprogramming.pub](../../assets/javascript-loop/test.png)
-
-**for forward vs reverse**
-
-- for loop 중에서는 평균적으로 가장 빠른 속도
 - 100만 개의 값을 가진 배열을 한 번 돌렸을 때..
 
 ```jsx
@@ -30,12 +23,14 @@ console.time(‘⏳’);
 
 for (let i = arr.length; i > 0; i--) {} // for(reverse) :- 1.5ms
 for (let i = 0; i < arr.length; i++) {} // for :- 1.6ms
+arr.forEach(v => v) // foreach :- 2.1ms
+for (const v of arr) {} // for…of :- 11.7ms
 
 console.timeEnd(‘⏳’);
 ```
+### 데이터 크기 및 연산 여부에 따라 다름
 
-- for 회수 *forward*(가산) 방식과 *reverse*(감산) 방식은 소요시간에 큰 차이는 나지 않는다. reverse 방식은 초기 변수 `let i = arr.length` 딱 1회만 연산하기 때문에 0.1ms 차이가 있다. forward 방식에서 가산을 할 때마다 `i < arr.length` 조건을 검증한다. 큰 차이 없으므로 무시해도 된다.
-- 반면, *forEach*는 array 프로토타입의 메서드다. 일반적인 for loop과 비교한다면 *forEach*나 *for…of*는 배열을 순회하기에 더 오래 걸린다.
+![image from betterprogramming.pub](../../assets/javascript-loop/test.png)
 
 ## 각각의 loop을 언제 사용하면 좋을까?
 
@@ -55,6 +50,11 @@ console.timeEnd(‘⏳’);
     - 왜 느린가?
         - Object의 모든 property에 숫자 index를 부여하고 그 순서로 순회한다.
         - 이런 이유로 애초에 숫자 index가 key인 array를 도는 for…of가 더 빠르다.
+
+**for forward vs reverse**
+- for loop 중에서는 평균적으로 가장 빠른 속도
+- for 회수 *forward*(가산) 방식과 *reverse*(감산) 방식은 소요시간에 큰 차이는 나지 않는다. reverse 방식은 초기 변수 `let i = arr.length` 딱 1회만 연산하기 때문에 0.1ms 차이가 있다. forward 방식에서 가산을 할 때마다 `i < arr.length` 조건을 검증한다. 큰 차이 없으므로 무시해도 된다.
+- 반면, *forEach*는 array 프로토타입의 메서드다. 일반적인 for loop과 비교한다면 *forEach*나 *for…of*는 배열을 순회하기에 더 오래 걸린다.
 
 ## 결론
 
