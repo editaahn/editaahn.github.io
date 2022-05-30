@@ -16,9 +16,9 @@ comments: true
 
 ### 데이터 크기 및 연산 여부에 따라 다름
 
-![image](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fce47cd-5fb9-4ff5-8f38-3c1a3f3cd839/Untitled.png)
+![image](../../assets/javascript-loop/test.png)
 
-image from [https://betterprogramming.pub/which-is-the-fastest-while-for-foreach-for-of-9022902be15e](https://betterprogramming.pub/which-is-the-fastest-while-for-foreach-for-of-9022902be15e)
+image from https://betterprogramming.pub/which-is-the-fastest-while-for-foreach-for-of-9022902be15e
 
 **for forward vs reverse**
 
