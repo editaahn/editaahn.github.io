@@ -132,10 +132,6 @@ bug.reportingURL;
 // Property 'reportingURL' does not exist on type 'BugReport'.
 ```
 
-[https://dparkjm.com/typescript-decorators](https://dparkjm.com/typescript-decorators)
-
-[https://www.typescriptlang.org/ko/docs/handbook/decorators.html#데코레이터-decorators](https://www.typescriptlang.org/ko/docs/handbook/decorators.html#%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-decorators)
-
 ## **Method 데코레이터**
 
 - Method 선언 직전에 선언
@@ -199,3 +195,8 @@ class BugReport {
   }
 }
 ```
+
+### Reference
+- 다른 분의 블로그: [https://dparkjm.com/typescript-decorators](https://dparkjm.com/typescript-decorators)
+
+- 공식 문서: [https://www.typescriptlang.org/ko/docs/handbook/decorators.html#데코레이터-decorators](https://www.typescriptlang.org/ko/docs/handbook/decorators.html#%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-decorators)
