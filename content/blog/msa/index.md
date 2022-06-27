@@ -10,6 +10,8 @@ comments: true
 
 - 아키텍처를 독립적인 비지니스 기능을 가진 여러 서비스들로 쪼개어 구성하는 방법
 
+<img src="https://docs.microsoft.com/ko-KR/azure/architecture/includes/images/microservices-logical.png">
+
 ## Micro Service
 
 - Microservice는 작고, 독립적이고, 느슨하게 결합되어야 한다.
