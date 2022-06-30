@@ -61,11 +61,16 @@ comments: true
 
 ## 모범 사례
 
-- 비즈니스 도메인을 중심으로 서비스를 모델링
+- 비즈니스 도메인을 중심으로 서비스 모델링
 - 개별 팀이 서비스 디자인 및 빌드를 담당하고, 서비스 간 코드 또는 데이터 스키마를 공유하지 않음. 서비스 간 API로 통신
 - storage는 서비스별 private으로 관리
 - 각 서비스 및 데이터 형식에 가장 적합한 storage 사용
+- 인증 등의 공통 관심사(cross-cutting concern)는 gateway에 위임
+- 도메인 내부 정보를 gateway에 알리지 않음. gateway는 비지니스 룰이나 도메인 로직을 몰라도 클라이언트 요청을 핸들링할 수 있어야함
+- 각 서비스가 높은 기능 응집력을 가짐. 만약 항상 같이 변경되어야 하는 서비스 두개가 있다면 서비스를 합치는 게 좋음
+- 결함 격리: 서비스 내 결함이 다른 서비스로 연쇄되는 것을 막기 위한 복구 전략 수립
 
 ### Reference
 
 - [Azure 문서](https://docs.microsoft.com/ko-kr/azure/architecture/guide/architecture-styles/microservices)
+- [더 읽어볼만한 글: cross-cutting concern을 위한 Side Car 패턴](https://blog.bitsrc.io/handling-cross-cutting-concerns-in-microservices-the-sidecar-pattern-59890fe3dc0f)
