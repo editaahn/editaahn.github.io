@@ -59,6 +59,13 @@ comments: true
 - 버전 업데이트 시 다른 서비스들에 대해 미치는 영향 고려
 - 서비스를 분산해 관리하므로, 팀의 기술 역량 및 경험이 중요함
 
+## 모범 사례
+
+- 비즈니스 도메인을 중심으로 서비스를 모델링
+- 개별 팀이 서비스 디자인 및 빌드를 담당하고, 서비스 간 코드 또는 데이터 스키마를 공유하지 않음. 서비스 간 API로 통신
+- storage는 서비스별 private으로 관리
+- 각 서비스 및 데이터 형식에 가장 적합한 storage 사용
+
 ### Reference
 
 - [Azure 문서](https://docs.microsoft.com/ko-kr/azure/architecture/guide/architecture-styles/microservices)
