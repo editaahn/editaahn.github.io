@@ -89,7 +89,7 @@ emoji와 글이 들어 있는 카드를 만들어 보자.
 
 ### 결과
 
-<img src="../../assets/new-css-spec-in-chrome-105/has.png" width="300px">
+<img src="../../assets/new-css-spec-in-chrome-105/has.png">
 
 ### 의견
 
