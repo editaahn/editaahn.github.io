@@ -85,16 +85,16 @@ comments: true
     1. fonttools 라이브러리를 설치하면 pyftsubset로 시작하는 CLI command를 쓸 수 있다. 
         
         ```bash
-        pyftsubset Pretendard-Regular.woff2
+        pyftsubset MyFont-Regular.woff2
          --unicodes=U+d105-d12f,U+d132-d133,U+d135-d137,U+d139-d13f # 포함시킬 unicode range
-         --output-file=Pretendard-Regular.chunked-dynamic-subset.1.woff2 # 아웃풋 파일명
+         --output-file=MyFont-Regular.chunked-dynamic-subset.1.woff2 # 아웃풋 파일명
          --flavor=woff2 # 이 옵션으로 포맷을 넣어줘야 포맷에 맞게 압축이 된다.
         ```
         
     2. 위 3번에서 만든 그룹을 기준으로 command를 뽑았다.
         
         ```tsx
-        const names = ['Pretendard-Regular', 'Pretendard-Medium', 'Pretendard-Bold'];
+        const names = ['MyFont-Regular', 'MyFont-Medium', 'MyFont-Bold'];
         
         /*
         폰트 서브셋 생성 command
@@ -135,7 +135,7 @@ comments: true
     Copyright (c) ....
     */`;
     
-    const fontName = 'Pretendard';
+    const fontName = 'MyFont';
     const fontStyles = [
       ['Regular', 400],
       ['Medium', 500],
@@ -148,7 +148,7 @@ comments: true
           (unicodeList, i) => `
     /* ${i + 1} */
     @font-face {
-      font-family: 'Pretendard';
+      font-family: 'MyFont';
       font-style: normal;
       font-display: swap;
       font-weight: ${weight};
