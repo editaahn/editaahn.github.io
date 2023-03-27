@@ -46,6 +46,8 @@ h6,
 blockquote {
   color: var(--textTitle);
   font-family: RaleWay, Noto Sans KR, sans-serif;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 ul, ol {
