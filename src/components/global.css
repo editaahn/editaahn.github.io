@@ -50,6 +50,10 @@ blockquote {
   margin-right: 0;
 }
 
+h3 {
+  margin-top: 1.75rem;
+}
+
 ul, ol {
   margin-left: 0;
   margin-bottom: 1rem;
