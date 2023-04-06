@@ -50,8 +50,13 @@ blockquote {
   margin-right: 0;
 }
 
-h3 {
+h4 {
   margin-top: 1.75rem;
+  margin-bottom: 1.2rem;
+}
+
+h3 {
+  margin-top: 2.5rem;
 }
 
 ul, ol {
@@ -62,6 +67,10 @@ ul, ol {
 li {
   margin-left: 20px;
   margin-bottom: calc(1.2rem / 2);
+}
+
+li > ul {
+  margin-left: 0;
 }
 
 p {
