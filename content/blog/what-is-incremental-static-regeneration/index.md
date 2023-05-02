@@ -1,12 +1,12 @@
 ---
 title: "[Next.js] What is Incremental Static Regeneration(ISR)"
 date: "2023-05-02T17:52:00"
-description: "2022년 Next.js에서 무게감 있게 등장한 Incremental Static Regeneration에 대해서 알아보자."
+description: "Next.js의 Incremental Static Regeneration의 등장 배경, 성능상 이점, 사용법에 대해서 알아보았다."
 categories: [nextjs]
 comments: true
 ---
 
-Next.js 프레임워크 사용 시 Static Site Generation(SSG)과 Server-Side Rendering(SSR)이 주된 서빙 방식으로 사용되고 있는데, 가장 최근에 추가된 Incremental Static Regeneration(ISR)은 이 둘을 융합시킨 방식이다.
+Next.js 프레임워크 사용 시 Static Site Generation(SSG)과 Server-Side Rendering(SSR)이 주된 서빙 방식으로 사용되고 있는데, 추후 릴리즈된 Incremental Static Regeneration(ISR)은 이 둘을 융합시킨 방식이다.
 
 ## Background
 
@@ -26,7 +26,7 @@ Next.js 팀은 가능하면 SSG를 적용하도록 권장하고 있다. 블로�
 
 ## Detail of ISR
 
-ISR은 **미리 만들어둔 페이지 캐시를 런타임에 지속적으로 업데이트**하는 방식이다.
+ISR은 **미리 만들어둔 페이지 캐시를 런타임에 지속적으로 업데이트**하는 방식으로, 위 방식들의 이점을 충족시킨다.
 <br>
 SSG에서 얻을 수 있는 퍼포먼스나 pre-render의 이점을 누리면서, 거의 실시간에 가까운 컨텐츠 업데이트를 실현할 수 있다.
 
