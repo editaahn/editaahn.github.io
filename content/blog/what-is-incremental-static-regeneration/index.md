@@ -51,7 +51,7 @@ Next.js는 파일 시스템 캐시에 HTML 결과물을 저장한다. ; 프로�
 
 SSG에서 얻을 수 있는 퍼포먼스나 pre-render의 이점을 누리면서, 거의 실시간에 가까운 컨텐츠 업데이트를 실현할 수 있다.
 <br>
-→ SSR 페이지를 ISR로 진화시키면 서버에서의 작업이 줄어들기 때문에 Blocking time(TTFB) 개선에 효과가 있다. 유저에게 빠른 사용경험을 제공할 수 있고, Lighthouse 등 성능 측정 시 좋은 점수를 얻을 수 있어 SEO도 긍정적이다.
+→ SSR 페이지를 ISR로 진화시키면 유저에게 빠른 사용경험을 제공할 수 있고, 서버에서의 작업이 줄어들기 때문에 Blocking time(TTFB) 개선에 효과가 있다. Lighthouse 등 성능 측정 시 좋은 점수를 얻을 수 있어 SEO에 긍정적이다. 
 
 ### stale-while-revalidation(SWR)
 
