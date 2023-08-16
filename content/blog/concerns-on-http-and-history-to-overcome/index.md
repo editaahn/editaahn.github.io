@@ -66,13 +66,15 @@ HTTP를 최적화하기 위한 agenda들은 아래와 같다.
 
 > Connection: Keep-Alive
 
-클라이언트에서 위와 같은 헤더를 요청에 넣으면 서버가 TCP 연결을 끊지 않는다.
+클라이언트는 위와 같은 헤더를 요청에 넣어 연결을 유지하고 싶다는 의사를 보내고, 서버는 이후 해당 클라이언트의 요청-응답에 TCP 연결을 재사용할지 결정한다.
 <img src="../../assets/concerns-on-http-and-history-to-overcome/keepalive.webp">
 
 <figcaption align="center"><i>출처 : HTTP 완벽가이드 - 4.5.2 HTTP/1.0+의 Keep-Alive 커넥션</i></figcaption>
 
 <br>
-HTTP1.1부터는 기본값이 keep-alive가 되어서 요청 시 포함하지 않아도 된다. 필요 없는 경우에만 값으로 close를 넣어준다.
+HTTP1.1부터는 Connection 기본값이 keep-alive가 되어서, 원치 않는다면 값으로 close를 넣어준다. 하지만 기본값으로 요청에 포함된다고 해도 서버가 커넥션 지속 연결을 보장하는 것은 아니다.
+
+클라이언트에서 keep-alive로 요청을 보내더라도 서버는 여러 클라이언트에서 동시다발적으로 들어오는 많은 요청들을 핸들링하기에 충분치 않고, 지속적인 통신이 일어나지 않는 클라이언트의 경우 커넥션이 살아 있으면 자원이 낭비된다는 문제가 있다.
 
 [keep-alive 기능에 대한 자세한 설명](https://goodgid.github.io/HTTP-Keep-Alive/)
 
@@ -208,7 +210,7 @@ QUIC에서는 아래 방법으로 UDP의 부족한 보안성을 강화했다.
   - cloudflare-quic.com
   - quic.nginx.org
   - https://http3.is/
-- CDN을 사용하고 있다면, 간단한 설정을 통해 HTTP3를 지원할 수 있다.
+- CDN을 사용하고 있다면, 간단한 설정을 통해 HTTP3를 지원할 수 있다. 클라이언트와 CDN 엣지 로케이션 간의 HTTP3 통신이 가능하도록 하는 것이며, 클라이언트가 QUIC 프로토콜을 허용하지 않은 경우에는 HTTP2, 1.1로 fallback된다.
   - [Amazon CloudFront](https://aws.amazon.com/ko/blogs/korea/new-http-3-support-for-amazon-cloudfront)
   - [CloudFlare](https://www.cloudflare.com/ko-kr/learning/performance/what-is-http3/)
 

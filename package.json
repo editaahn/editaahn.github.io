@@ -55,8 +55,11 @@
     "type": "git",
     "url": "git+https://github.com/editaahn/editaahn.github.io.git"
   },
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
-    "build": "gatsby build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider && gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run dev",
